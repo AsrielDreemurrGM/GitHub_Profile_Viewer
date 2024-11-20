@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-// O "useEffect" serve para executar algum código com a
-// atualização de algum estado;
+// O "useEffect" serve para Executar um Código Específico
+// Somente Quando Ocorrer a Atualização de um Estado;
 
 const Formulario = () => {
     // Criando Estados Para Salvar os Valores;
@@ -14,12 +14,12 @@ const Formulario = () => {
     // useEffect(() => {
     //     console.log("O estado mudou");
     // })
-    // Utilizando o "useEffect" de acordo com uma condição;
+    // Utilizando o "useEffect" com uma Condição;
     useEffect(() => {
         console.log("O Estado Nome Mudou");
     }, [nome]);
 
-    // Utilizando o "useEffect" de acordo com varias condições;
+    // Utilizando o "useEffect" com Várias Condições;
     useEffect(() => {
         console.log("Uma ou Mais Matérias Foram Modificadas");
     }, [materiaA, materiaB, materiaC]);
@@ -28,7 +28,7 @@ const Formulario = () => {
     useEffect(() => {
         console.log("O Componente Terminou de Iniciar.");
 
-        // Executando quando o componente for desmontado/encerrado;
+        // Executando quando o Componente for Desmontado/Encerrado;
         return () => {
             console.log("O Componente Finalizou")
         }
