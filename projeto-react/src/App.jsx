@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       {/* Podemos Criar Propriedades/Atributos Dentro dos Componentes */}
-      <Perfil nome="Eduardo" endereco="https://github.com/AsrielDreemurrGM.png" />
+      <Perfil nomeUsuario="AsrielDreemurrGM" />
 
       {/* Mostrando Itens com Base em Suas Condições */}
       <button style={{display: "block", marginBottom: "10px"}} onClick={() => setRepositoriosEstaoVisiveis(!repositoriosEstaoVisiveis)} type="button">Mostrar/Esconder Repositórios</button>
