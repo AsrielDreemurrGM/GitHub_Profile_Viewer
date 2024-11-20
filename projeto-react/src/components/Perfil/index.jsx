@@ -1,5 +1,5 @@
 // Importando o CSS não informamos o Nome do Arquivo, somente o Caminho;
-import './perfil.css'
+import styles from './Perfil.module.css';
 
 // Podemos Exportar o "default" destas maneiras também:
 // export default function() {
@@ -10,12 +10,12 @@ import './perfil.css'
 //     const { endereco, nome } = props;
 const Perfil = ({ nomeUsuario }) => {
     return (
-        <header>
+        <header className={styles.header}>
             {/* Convertendo um Objeto em String */}
             {/* {JSON.stringify(props)} */}
             {/* Para utilizarmos classes do CSS usamos a Palavra Reservada "className" */}
-            <img className='perfil-avatar' src={`https://github.com/${nomeUsuario}.png`} alt="Foto de Perfil" />
-            <h1 className='perfil-titulo'>
+            <img className={styles.avatar} src={`https://github.com/${nomeUsuario}.png`} alt="Foto de Perfil" />
+            <h1 className={styles.name}>
                 Usuário: {nomeUsuario}
             </h1>
         </header>

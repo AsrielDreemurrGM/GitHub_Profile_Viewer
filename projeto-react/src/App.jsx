@@ -9,15 +9,20 @@ import ReposList from "./components/ReposList";
 function App() {
   const [formularioEstaVisivel, setFormularioEstaVisivel] = useState(false);
   const [repositoriosEstaoVisiveis, setRepositoriosEstaoVisiveis] = useState(false);
+  const [nomeUsuario, setNomeUsuario] = useState('');
+
   return (
     <>
       {/* Podemos Criar Propriedades/Atributos Dentro dos Componentes */}
-      <Perfil nomeUsuario="AsrielDreemurrGM" />
+      {/* Tornando o Usuário um Item Dinâmico */}
+      {/* O "onBlur" detecta alterações Somente Após Preencher e Clicar Fora do Campo */}
+      <input type="text" onBlur={evento => setNomeUsuario(evento.target.value)} placeholder="Digite um Nome de Usuário" />
 
-      {/* Mostrando Itens com Base em Suas Condições */}
-      <button style={{display: "block", marginBottom: "10px"}} onClick={() => setRepositoriosEstaoVisiveis(!repositoriosEstaoVisiveis)} type="button">Mostrar/Esconder Repositórios</button>
-      {repositoriosEstaoVisiveis && (
-        <ReposList />
+      {nomeUsuario.length > 4 && (
+        <>
+          <Perfil nomeUsuario={nomeUsuario} />
+          <ReposList nomeUsuario={nomeUsuario} />
+        </>
       )}
 
       <button onClick={() => setFormularioEstaVisivel(!formularioEstaVisivel)} type="button">Mostrar/Esconder Formulário</button>
