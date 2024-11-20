@@ -1,11 +1,38 @@
-import { useState } from "react"
+import { useState, useEffect } from "react";
+// O "useEffect" serve para executar algum código com a
+// atualização de algum estado;
 
 const Formulario = () => {
     // Criando Estados Para Salvar os Valores;
-    let [materiaA, setMateriaA] = useState(0);
-    let [materiaB, setMateriaB] = useState(0);
-    let [materiaC, setMateriaC] = useState(0);
-    let [nome, setNome] = useState('');
+    // Devemos sempre utilizar Constantes;
+    const [materiaA, setMateriaA] = useState(0);
+    const [materiaB, setMateriaB] = useState(0);
+    const [materiaC, setMateriaC] = useState(0);
+    const [nome, setNome] = useState('');
+
+    // Para utilizarmos o "useEffect";
+    // useEffect(() => {
+    //     console.log("O estado mudou");
+    // })
+    // Utilizando o "useEffect" de acordo com uma condição;
+    useEffect(() => {
+        console.log("O Estado Nome Mudou");
+    }, [nome]);
+
+    // Utilizando o "useEffect" de acordo com varias condições;
+    useEffect(() => {
+        console.log("Uma ou Mais Matérias Foram Modificadas");
+    }, [materiaA, materiaB, materiaC]);
+
+    // Utilizando o "useEffect" para quando o Componente for Montado/Carregado;
+    useEffect(() => {
+        console.log("O Componente Terminou de Iniciar.");
+
+        // Executando quando o componente for desmontado/encerrado;
+        return () => {
+            console.log("O Componente Finalizou")
+        }
+    }, []);
 
     const alteraNome = (evento) => {
         // console.log(evento.target.value);
@@ -13,7 +40,7 @@ const Formulario = () => {
         // setNome(evento.target.value)
         // Porém também podemos ter acesso ao último valor, da seguinte maneira;
         setNome(nomeAnterior => {
-            console.log(nomeAnterior);
+            // console.log(nomeAnterior);
 
             return evento.target.value;
         })
