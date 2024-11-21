@@ -6,27 +6,43 @@ import styles from './ReposList.module.css'
 const ReposList = ({ nomeUsuario }) => {
     const [repos, setRepos] = useState([]);
     const [estaCarregando, setEstaCarregando] = useState(true);
+    const [usuarioNaoEncontrado, setUsuarioNaoEncontrado] = useState(false);
 
     useEffect(() => {
         setEstaCarregando(true);
         // Recebendo Usuário Via Propriedade;
         fetch(`https://api.github.com/users/${nomeUsuario}/repos`)
-            .then(resposta => resposta.json())
+            .then(resposta => {
+                if (!resposta.ok) {
+                    throw new Error("Usuário Não Encontrado");
+                }
+                return resposta.json();
+            })
             .then(respostaJson => {
                 setTimeout(() => {
-                    setEstaCarregando(false)
                     setRepos(respostaJson);
+                    setEstaCarregando(false);
                 }, 2000);
+            })
+            .catch(erro => {
+                console.error("Erro ao buscar repositórios:", erro);
+                setEstaCarregando(false);
+                setUsuarioNaoEncontrado(true);
             })
     }, [nomeUsuario])
 
     return (
         <div className="container">
-            <h3>Repositórios Públicos:</h3>
-            {estaCarregando ? (
-                <h1>Carregando..</h1>
+            {usuarioNaoEncontrado ? (
+                <h1>Usuário Não Encontrado. <br/>Por favor, recarregue a página e tente novamente.</h1>
+            ) : estaCarregando ? (
+                <h1>Carregando...</h1>
+            ) : repos.length === 0 ? (
+                <h1>Nenhum repositório público encontrado.</h1>
             ) : (
-                <ul className={styles.list}>
+                <div>
+                    <h3>Repositórios Públicos:</h3>
+                    <ul className={styles.list}>
                     {/* {repos.map(repositorio => ( */}
                     {repos.map(({ id, name, language, html_url }) => (
                         // Todo item deve conter uma Chave (Key) Única;
@@ -43,6 +59,7 @@ const ReposList = ({ nomeUsuario }) => {
                         </li>
                     ))}
                 </ul>
+                </div>
             )}
         </div>
     )

@@ -14,7 +14,7 @@ const Perfil = ({ nomeUsuario }) => {
             {/* Convertendo um Objeto em String */}
             {/* {JSON.stringify(props)} */}
             {/* Para utilizarmos classes do CSS usamos a Palavra Reservada "className" */}
-            <img className={styles.avatar} src={`https://github.com/${nomeUsuario}.png`} alt="Foto de Perfil" />
+            <img className={styles.avatar} src={`https://github.com/${nomeUsuario}.png`} />
             <h1 className={styles.name}>
                 Usuário: {nomeUsuario}
             </h1>
