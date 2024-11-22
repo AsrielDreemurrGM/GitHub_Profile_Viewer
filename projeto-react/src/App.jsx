@@ -8,7 +8,6 @@ import ReposList from "./components/ReposList";
 
 function App() {
   // const [formularioEstaVisivel, setFormularioEstaVisivel] = useState(false);
-  const [repositoriosEstaoVisiveis, setRepositoriosEstaoVisiveis] = useState(false);
   const [nomeUsuario, setNomeUsuario] = useState('');
 
   return (
